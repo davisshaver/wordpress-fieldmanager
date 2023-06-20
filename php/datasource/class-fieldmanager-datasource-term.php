@@ -280,6 +280,11 @@ class Fieldmanager_Datasource_Term extends Fieldmanager_Datasource {
 		$tree          = $field->get_form_tree();
 		$oldest_parent = array_shift( $tree );
 
+		// Not sure why this is erroring, but clear it up.
+		if (! isset( $oldest_parent->current_context ) ) {
+			return;
+		}
+
 		foreach ( $taxonomies as $taxonomy ) {
 			if ( ! isset( $oldest_parent->current_context->taxonomies_to_save[ $taxonomy ] ) ) {
 				$oldest_parent->current_context->taxonomies_to_save[ $taxonomy ] = array(
